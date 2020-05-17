@@ -1,12 +1,11 @@
 package main
 
 import (
-	"github.com/zpbird/zp-go-mod/times"
-	// "github.com/zpbird/zp-go-mod/dirfiles"
+	"github.com/zpbird/zp-go-mod/ztimes"
 )
 
 // main aaa...
 func main() {
-	times.GetNow()
+	ztimes.GetNow()
 
 }
