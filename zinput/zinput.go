@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"strings"
 )
 
 const (
@@ -74,7 +75,7 @@ func Input(termString string, regexpText string) (inputText string) {
 			continue //??? os.Exit(0)
 		}
 
-		inputText = string(inputBytes)
+		inputText = strings.TrimSpace(string(inputBytes)) //去除首尾空格后的结果
 		trigger, err = regexp.MatchString(regexpText, inputText)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Occur error when match", termString, "(", inputText, "):", err)
