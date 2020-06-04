@@ -13,7 +13,8 @@ func main() {
 	// monDays := ztimes.GetMonDays(y, m)
 	// fmt.Println(monDays)
 
-	b, e := zdirfiles.GetDirFileList("D:\\project\\monitor\\template", "file")
+	b, e := zdirfiles.CopyFile("e:/新建文本文档.txt", "e:/zzz/abc.txt", true)
 	fmt.Println(b, e)
-
+	err := zdirfiles.MakeDir("e:/zzz")
+	fmt.Println(err)
 }

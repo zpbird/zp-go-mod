@@ -67,7 +67,7 @@ func StopContinue() {
 func Input(termString string, regexpText string) (inputText string) {
 	var trigger = false
 	for !trigger {
-		fmt.Printf("请输入%s", termString)
+		fmt.Printf("%s", termString)
 		reader := bufio.NewReader(os.Stdin)
 		inputBytes, _, err := reader.ReadLine()
 		if err != nil {

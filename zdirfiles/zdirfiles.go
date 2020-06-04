@@ -3,6 +3,7 @@ package zdirfiles
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"sort"
@@ -123,4 +124,45 @@ func GetDirFileList(path string, kind string) ([]string, error) {
 	}
 
 	return dfSlice, err
+}
+
+// CopyFile 参数：cover 设置为true则覆盖已经存在的文件，false跳过...
+func CopyFile(source, target string, cover bool) (sizes int64, err error) {
+	if b, _ := DirFileExist(target, "file"); b && !cover {
+		fmt.Println("目标文件已经存在！")
+		return
+	}
+
+	src, err := os.Open(source)
+	if err != nil {
+		return
+	}
+
+	defer src.Close()
+	dst, err := os.OpenFile(target, os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		return
+	}
+	defer dst.Close()
+	return io.Copy(dst, src)
+}
+
+// CopyDir ...
+func CopyDir() {
+
+}
+
+// MakeDir ...
+func MakeDir(dirName string) (b bool, err error) {
+
+	err = os.Mkdir(dirName, os.ModePerm)
+	if err != nil && os.IsExist(err) {
+		b = true
+		return
+	} else if err != nil {
+		return
+	} else {
+		b = true
+	}
+	return
 }
