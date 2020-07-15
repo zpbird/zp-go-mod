@@ -129,7 +129,7 @@ func GetDirFileList(path string, kind string) ([]string, error) {
 // CopyFile 参数：cover 设置为true则覆盖已经存在的文件，false跳过...
 func CopyFile(source, target string, cover bool) (sizes int64, err error) {
 	if b, _ := DirFileExist(target, "file"); b && !cover {
-		fmt.Println("目标文件已经存在！")
+		fmt.Println(target + " 已经存在！")
 		return
 	}
 
